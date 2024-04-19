@@ -29,7 +29,7 @@
     # it'll impact your entire system.
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    chaotic.url = "github:chaotic-cx/nyx?ref=nyxpkgs-unstable";
   };
 
   outputs = { self, nixpkgs, chaotic }: {
