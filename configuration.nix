@@ -150,7 +150,7 @@
 
   system.autoUpgrade = {
     enable = true;
-    flake = "github.com:AndreasDybdahl/mediacenter-nixos?ref=main#mediacenter";
+    flake = "github:AndreasDybdahl/mediacenter-nixos?ref=main#mediacenter";
     dates = "05:00";
     randomizedDelaySec = "45min";
     allowReboot = true;
