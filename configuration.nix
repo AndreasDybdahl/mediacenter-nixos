@@ -5,16 +5,15 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "andreasnix"; # Define your hostname.
+  # networking.hostName = "andreasnix"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -24,47 +23,47 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Oslo";
+  # # Set your time zone.
+  # time.timeZone = "Europe/Oslo";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
+  # i18n.defaultLocale = "en_US.UTF-8";
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
 
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "no";
-    xkbVariant = "";
-  };
+  # # Configure keymap in X11
+  # services.xserver = {
+  #   layout = "no";
+  #   xkbVariant = "";
+  # };
 
-  # Configure console keymap
-  console.keyMap = "no";
+  # # Configure console keymap
+  # console.keyMap = "no";
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # # Enable CUPS to print documents.
+  # services.printing.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+  # # Enable sound with pipewire.
+  # sound.enable = true;
+  # hardware.pulseaudio.enable = false;
+  # security.rtkit.enable = true;
+  # services.pipewire = {
+  #   enable = true;
+  #   alsa.enable = true;
+  #   alsa.support32Bit = true;
+  #   pulse.enable = true;
+  #   # If you want to use JACK applications, uncomment this
+  #   #jack.enable = true;
 
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
+  #   # use the example session manager (no others are packaged yet so this is enabled by default,
+  #   # no need to redefine it in your config for now)
+  #   #media-session.enable = true;
+  # };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -81,29 +80,33 @@
       flatpak
       vscode
       vlc
-      jellyfin-media-player  
+      jellyfin-media-player
       xclip
     ];
 
   };
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "andreas";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "andreas";
 
   # Enable flatpak
   services.flatpak.enable = true;
+
+  # Enable unclutter (hides mouse cursor)
+  services.unclutter.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-    libcec
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      #  wget
+      libcec
+    ];
 
   services.udev.extraRules = ''
     # Pulse8 auto attach
@@ -118,12 +121,11 @@
   systemd.services.pulse8-cec-attach = {
     enable = true;
     description = "Configure Pulse-Eight serial device at %I";
-    unitConfig = {
-      ConditionPathExists = "%I";
-    };
+    unitConfig = { ConditionPathExists = "%I"; };
     serviceConfig = {
       Type = "forking";
-      ExecStart = "${pkgs.linuxConsoleTools}/bin/inputattach --daemon --pulse8-cec %I";
+      ExecStart =
+        "${pkgs.linuxConsoleTools}/bin/inputattach --daemon --pulse8-cec %I";
     };
   };
 
@@ -148,6 +150,11 @@
 
   system.autoUpgrade = {
     enable = true;
+    flake =
+      "https://github.com/AndreasDybdahl/mediacenter-nixos?ref=main#mediacenter";
+    dates = "05:00";
+    randomizedDelaySec = "45min";
+    allowReboot = true;
   };
 
   # This value determines the NixOS release from which the default
