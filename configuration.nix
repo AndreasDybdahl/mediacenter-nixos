@@ -5,7 +5,8 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
@@ -72,7 +73,10 @@
   users.users.andreas = {
     isNormalUser = true;
     description = "Andreas";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
     packages = with pkgs; [
       firefox
       brave
@@ -101,12 +105,11 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs;
-    [
-      #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      #  wget
-      libcec
-    ];
+  environment.systemPackages = with pkgs; [
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
+    libcec
+  ];
 
   services.udev.extraRules = ''
     # Pulse8 auto attach
@@ -121,11 +124,12 @@
   systemd.services.pulse8-cec-attach = {
     enable = true;
     description = "Configure Pulse-Eight serial device at %I";
-    unitConfig = { ConditionPathExists = "%I"; };
+    unitConfig = {
+      ConditionPathExists = "%I";
+    };
     serviceConfig = {
       Type = "forking";
-      ExecStart =
-        "${pkgs.linuxConsoleTools}/bin/inputattach --daemon --pulse8-cec %I";
+      ExecStart = "${pkgs.linuxConsoleTools}/bin/inputattach --daemon --pulse8-cec %I";
     };
   };
 
@@ -154,6 +158,14 @@
     dates = "05:00";
     randomizedDelaySec = "45min";
     allowReboot = true;
+  };
+
+  nix.settings = {
+    # enable flakes globally
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 
   # This value determines the NixOS release from which the default

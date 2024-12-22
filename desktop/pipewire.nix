@@ -2,7 +2,7 @@
 
 {
 
-  sound.enable = false;
+  # sound.enable = false;
   hardware.pulseaudio.enable = false;
 
   # rtkit is optional but recommended
