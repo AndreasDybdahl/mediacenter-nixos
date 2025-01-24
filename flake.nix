@@ -58,6 +58,10 @@
         ];
         flake.path = "github:AndreasDybdahl/mediacenter-nixos";
 
+        systemConfigurations.sharedModules = [
+          ./theme
+        ];
+
         systemConfigurations.systems.mediacenter = {
           unstable = true;
           hardware = ./systems/mediacenter/hardware.nix;
