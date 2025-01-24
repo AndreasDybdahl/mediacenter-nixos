@@ -24,9 +24,6 @@
   # Enable flatpak
   services.flatpak.enable = true;
 
-  # Enable unclutter (hides mouse cursor)
-  services.unclutter.enable = true;
-
   # # Allow unfree packages
   # nixpkgs.config.allowUnfree = true;
 
