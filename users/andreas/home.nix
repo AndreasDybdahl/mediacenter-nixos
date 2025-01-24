@@ -125,10 +125,6 @@ in
         email = "andreas.dyb@gmail.com";
       };
 
-      gpg = {
-        format = "ssh";
-      };
-
       commit = {
         gpgsign = false;
       };
