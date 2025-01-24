@@ -169,9 +169,6 @@ in
     nixfmt-rfc-style
     nil
     nh
-    flatpak
-    vlc
-    xclip
   ]);
 
   # This value determines the home-manager release from which the default
