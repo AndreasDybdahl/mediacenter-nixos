@@ -5,6 +5,11 @@
     image = ./bg.jpg;
     polarity = "dark";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
+
+    cursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Ice";
+    };
   };
 
   config.home-manager.sharedModules = [
