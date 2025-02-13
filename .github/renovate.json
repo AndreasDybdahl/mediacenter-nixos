@@ -1,9 +1,14 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["local>YoloDev/renovate-config", ":prImmediately"],
+    "extends": [
+        "local>YoloDev/renovate-config",
+        ":prImmediately"
+    ],
     "lockFileMaintenance": {
         "enabled": true,
-        "extends": ["schedule:daily"]
+        "extends": [
+            "schedule:weekly"
+        ]
     },
     "nix": {
         "enabled": true
