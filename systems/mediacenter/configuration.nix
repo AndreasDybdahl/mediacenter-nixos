@@ -57,6 +57,15 @@
     };
   };
 
+  # Setup auto-upgrade
+  system.autoUpgrade = {
+    enable = true;
+    operation = "boot";
+    dates = "05:00";
+    randomizedDelaySec = "45min";
+    allowReboot = true;
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
