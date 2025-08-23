@@ -35,34 +35,36 @@ in
   programs.vscode = mkIf isDesktop {
     enable = true;
     mutableExtensionsDir = false;
-    extensions = with pkgs.vscode-extensions; [
-      eamodio.gitlens
-      editorconfig.editorconfig
-      esbenp.prettier-vscode
-      fill-labs.dependi
-      github.copilot
-      github.copilot-chat
-      github.vscode-github-actions
-      jnoortheen.nix-ide
-      mkhl.direnv
-      pkief.material-icon-theme
-      rust-lang.rust-analyzer
-      tamasfe.even-better-toml
-    ];
-    userSettings = {
-      "editor.formatOnSave" = true;
-      "editor.tabSize" = 2;
-      "workbench.iconTheme" = "material-icon-theme";
-      "nix.enableLanguageServer" = true;
-      "nix.formatterPath" = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
-      "nix.serverSettings"."nil" = {
-        "formatting"."command" = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
-        "nix"."maxMemoryMB" = 12560;
-        "nix"."flake" = {
-          "autoArchive" = true;
-          "autoEvalInputs" = true;
+    profiles.default = {
+      userSettings = {
+        "editor.formatOnSave" = true;
+        "editor.tabSize" = 2;
+        "workbench.iconTheme" = "material-icon-theme";
+        "nix.enableLanguageServer" = true;
+        "nix.formatterPath" = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+        "nix.serverSettings"."nil" = {
+          "formatting"."command" = [ "${pkgs.nixfmt-rfc-style}/bin/nixfmt" ];
+          "nix"."maxMemoryMB" = 12560;
+          "nix"."flake" = {
+            "autoArchive" = true;
+            "autoEvalInputs" = true;
+          };
         };
       };
+      extensions = with pkgs.vscode-extensions; [
+        eamodio.gitlens
+        editorconfig.editorconfig
+        esbenp.prettier-vscode
+        fill-labs.dependi
+        github.copilot
+        github.copilot-chat
+        github.vscode-github-actions
+        jnoortheen.nix-ide
+        mkhl.direnv
+        pkief.material-icon-theme
+        rust-lang.rust-analyzer
+        tamasfe.even-better-toml
+      ];
     };
   };
 
