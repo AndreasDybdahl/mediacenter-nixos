@@ -30,14 +30,27 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
+    # Use the full BlueZ package (often fixes controller issues)
+    package = pkgs.bluezFull;
     settings = {
       General = {
         Experimental = true;
+        ControllerMode = "dual"; # good default for most adapters
       };
     };
   };
 
+  # Make sure firmware can actually be loaded for BT/WiFi chips
+  hardware.enableRedistributableFirmware = true;
+
+  # Blueman UI
   services.blueman.enable = true;
+
+  # Polkit so your user/session is allowed to control Bluetooth
+  security.polkit.enable = true;
+
+  # Udev rules for BlueZ so the adapter appears correctly
+  services.udev.packages = [ pkgs.bluez ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
