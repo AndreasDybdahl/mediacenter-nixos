@@ -31,7 +31,7 @@
     enable = true;
     powerOnBoot = true;
     # Use the full BlueZ package (often fixes controller issues)
-    package = pkgs.bluezFull;
+    package = pkgs.bluez;
     settings = {
       General = {
         Experimental = true;
