@@ -16,15 +16,15 @@
   ];
 
   # Chinese, Korean, and Japanese fonts
-  config.fonts.packages = [
-    pkgs.cascadia-code
-    pkgs.fira-code
-    pkgs.fira-code-nerdfont
-    pkgs.fira-code-symbols
+  fonts.packages = with pkgs; [
+    cascadia-code
+    fira-code
+    fira-code-nerdfont
+    fira-code-symbols
 
     # Chinese, Korean, and Japanese fonts
-    pkgs.noto-fonts-cjk-sans
-    pkgs.noto-fonts-cjk-serif
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
   ];
 
   home = ./home.nix;
