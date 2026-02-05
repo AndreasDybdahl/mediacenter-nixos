@@ -69,8 +69,8 @@
               fonts.packages = with pkgs; [
                 cascadia-code
                 fira-code
-                fira-code-nerdfont
                 fira-code-symbols
+                nerd-fonts.fira-code
 
                 # Chinese, Korean, and Japanese fonts
                 noto-fonts-cjk-sans
