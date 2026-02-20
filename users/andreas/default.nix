@@ -13,6 +13,8 @@
   user.packages = with pkgs; [
     flatpak
     vlc
+    zed
+    opencode
   ];
 
   home = ./home.nix;
