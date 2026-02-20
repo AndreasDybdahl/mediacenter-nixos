@@ -25,6 +25,10 @@ in
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     history.size = 10000;
+
+    initExtra = ''
+      alias zed="zed-editor"
+    '';
   };
 
   programs.direnv = {
@@ -66,6 +70,59 @@ in
         tamasfe.even-better-toml
       ];
     };
+  };
+
+  programs.zed-editor = {
+    enable = true;
+    extensions = [
+      "nix"
+      "sql"
+      "html"
+      "toml"
+      "crates-lsp"
+      "catppuccin-icons"
+    ];
+    extraPackages = with pkgs; [
+      nixd
+      rust-analyzer
+    ];
+
+    userSettings = {
+      agent.enabled = true;
+      agent.default_model = {
+        provider = "copilot_chat";
+        model = "gpt-5.3";
+      };
+
+      node = {
+        path = lib.getExe pkgs.nodejs;
+        npm_path = lib.getExe' pkgs.nodejs "npm";
+      };
+
+      journal.hour_format = "hour24";
+      auto_update = false;
+
+      lsp.rust_analyzer.binary.path_lookup = true;
+      lsp.nix.binary.path_lookup = true;
+      load_direnv = "shell_hook";
+      base_keymap = "VSCode";
+
+      #buffer_font_family = terminalFont;
+      buffer_font_size = 16.0;
+      #theme = "VSCode Dark Modern";
+      #ui_font_family = terminalFont;
+      ui_font_size = 16.0;
+      icon_theme = "Catppuccin Latte";
+    };
+
+    #themes = {
+    #  vscode-dark-modern = ./zed/themes/vscode-dark-modern.json;
+    #};
+  };
+
+  home.shellAliases = {
+    # Zed editor
+    zed = "zeditor";
   };
 
   programs.ssh = {
