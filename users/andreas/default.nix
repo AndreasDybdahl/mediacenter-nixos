@@ -13,7 +13,7 @@
   user.packages = with pkgs; [
     flatpak
     vlc
-    zed
+    zed-editor
     opencode
   ];
 
