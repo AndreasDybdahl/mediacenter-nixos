@@ -13,24 +13,24 @@ jobs:
     runs-on: ubuntu-latest
     needs: []
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - name: Check Nix flake Nixpkgs inputs
-        uses: DeterminateSystems/flake-checker-action@main
+        uses: DeterminateSystems/flake-checker-action@c69473f65c5db52bfd5542b6766583c43ce175f6 # main
 
   build:
     runs-on: ubuntu-latest
     needs: []
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v21
+        uses: DeterminateSystems/nix-installer-action@c5a866b6ab867e88becbed4467b93592bce69f8a # v21
         with:
             extra-conf: |
               extra-experimental-features = nix-command flakes recursive-nix pipe-operators
 
       - name: Setup Nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v13
+        uses: DeterminateSystems/magic-nix-cache-action@565684385bcd71bad329742eefe8d12f2e765b39 # v13
 
       - name: Show flake
         run: nix flake show
