@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Check Nix flake Nixpkgs inputs
-        uses: DeterminateSystems/flake-checker-action@9ee1c5473f1abdfb299f6c4f0fab813147c97fe3 # main
+        uses: DeterminateSystems/flake-checker-action@a0f068d37b542f3150564fbf1164fec2d958ee11 # main
 
   build:
     runs-on: ubuntu-latest
