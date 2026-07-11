@@ -68,17 +68,25 @@
             {
               nixpkgs.config.permittedInsecurePackages = [ "qtwebengine-5.15.19" ];
 
-              # Chinese, Korean, and Japanese fonts
               fonts.packages = with pkgs; [
                 cascadia-code
                 fira-code
                 fira-code-symbols
                 nerd-fonts.fira-code
 
+                noto-fonts
+                noto-fonts-color-emoji
+
                 # Chinese, Korean, and Japanese fonts
                 noto-fonts-cjk-sans
                 noto-fonts-cjk-serif
               ];
+
+              config.fonts.fontconfig.defaultFonts = {
+                emoji = [ "Noto Color Emoji" ];
+                sansSerif = [ "Noto Sans" ];
+                serif = [ "Noto Serif" ];
+              };
             }
           )
         ];
