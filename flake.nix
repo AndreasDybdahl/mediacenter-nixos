@@ -82,7 +82,7 @@
                 noto-fonts-cjk-serif
               ];
 
-              config.fonts.fontconfig.defaultFonts = {
+              fonts.fontconfig.defaultFonts = {
                 emoji = [ "Noto Color Emoji" ];
                 sansSerif = [ "Noto Sans" ];
                 serif = [ "Noto Serif" ];
