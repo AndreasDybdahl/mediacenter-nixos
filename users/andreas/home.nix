@@ -26,7 +26,7 @@ in
     syntaxHighlighting.enable = true;
     history.size = 10000;
 
-    initContent ''
+    initContent = ''
       alias zed="zed-editor"
     '';
   };
