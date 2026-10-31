@@ -26,7 +26,7 @@ in
     syntaxHighlighting.enable = true;
     history.size = 10000;
 
-    initExtra = ''
+    initContent ''
       alias zed="zed-editor"
     '';
   };
@@ -137,7 +137,7 @@ in
   programs.gh-dash.enable = true;
   programs.git = {
     enable = true;
-    extraConfig = {
+    settings = {
       core = {
         symlinks = true;
       };
